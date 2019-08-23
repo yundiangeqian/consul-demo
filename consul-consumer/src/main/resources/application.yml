@@ -1,0 +1,17 @@
+server:
+  port: 8900
+spring:
+  application:
+    name: consul-consumer
+  cloud:
+    consul:
+      enabled: true
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: false
+        hostname: localhost
+        tags:
+        - consul-/${spring.application.name}
+        instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+        ip-address: true

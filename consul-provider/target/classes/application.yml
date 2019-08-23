@@ -1,0 +1,18 @@
+server:
+  port: 8881
+spring:
+  application:
+    name: consul-provider
+  cloud:
+    consul:
+      enabled: true
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        hostname: localhost
+        service-name: consul-provider
+        tags:
+        - consul-/${spring.application.name}
+        instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+        ip-address: true
